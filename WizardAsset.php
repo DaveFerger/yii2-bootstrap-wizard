@@ -5,7 +5,7 @@
  * @license https://raw.githubusercontent.com/Chofoteddy/yii2-bootstrap-wizard/master/LICENSE
  */
 
-namespace chofoteddy\wizard;
+namespace daveferger\wizard;
 
 use Yii;
 use yii\helpers\ArrayHelper;

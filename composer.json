@@ -1,7 +1,7 @@
 {
-    "name": "chofoteddy/yii2-bootstrap-wizard",
+    "name": "daveferger/yii2-bootstrap-wizard",
     "description": "Wizard form based on twitter bootstrap plugin (@VinceG)",
-    "homepage": "https://github.com/Chofoteddy/yii2-bootstrap-wizard",
+    "homepage": "https://github.com/DaveFerge/yii2-bootstrap-wizard",
     "keywords": [
         "yii2",
         "wizard",
@@ -32,7 +32,7 @@
     },
     "autoload": {
         "psr-4": {
-            "chofoteddy\\wizard\\": ""
+            "daveferger\\wizard\\": ""
         }
     },
     "extra": {

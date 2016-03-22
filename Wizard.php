@@ -5,7 +5,7 @@
  * @license https://raw.githubusercontent.com/Chofoteddy/yii2-bootstrap-wizard/master/LICENSE
  */
 
-namespace chofoteddy\wizard;
+namespace daveferger\wizard;
 
 use Yii;
 use yii\base\InvalidConfigException;
@@ -102,6 +102,16 @@ class Wizard extends \yii\bootstrap\Widget
     public $headerOptions = [];
 
     /**
+     * @var array list of HTML attributes for the tab pane tags.
+     * The following special options are recognized:
+     *
+     * - tag: string, defaults to "ul", the tag name of the item container tags.
+     *
+     * @see \yii\helpers\Html::renderTagAttributes() for details on how attributes are being rendered.
+     */
+    public $tabOptions = [];
+
+    /**
      * @var array options to get passed to the \yii\bootstrap\Nav widget
      *
      * @see \yii\bootstrap\Widget::$options for details.
@@ -195,7 +205,7 @@ class Wizard extends \yii\bootstrap\Widget
                     'url' => $item['url'],
                     'linkOptions' => $linkOptions,
                     'options' => $labelOptions,
-               ];
+                ];
             } else {
                 $linkOptions['data-toggle'] = 'tab';
                 $labels[] = [
@@ -216,10 +226,10 @@ class Wizard extends \yii\bootstrap\Widget
         }
 
         return Nav::widget(['items' => $labels, 'options' => $this->navOptions])
-            . Html::tag(
-                'div',
-                implode("\n", $contents),
-                ['class' => 'tab-content']
-            );
+        . Html::tag(
+            'div',
+            implode("\n", $contents),
+            ArrayHelper::getValue($this->tabOptions, 'tabOptions', ['class' => 'tab-content'])
+        );
     }
 }
