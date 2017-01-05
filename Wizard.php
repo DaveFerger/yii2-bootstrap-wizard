@@ -225,11 +225,25 @@ class Wizard extends \yii\bootstrap\Widget
             $n++;
         }
 
+        //TODO ezt még heggeszteni kell egy kicsit
+/*        if (($labelsCount = count($labels)) >= 7) {
+            $newLabels = array_slice($labels, 0, 5);
+            array_push($newLabels, ['label' => '... és még ' . ($labelsCount - 5) . ' elem', 'items' => array_slice($labels, 5), 'dropDownOptions' => ['class' => 'dropdown-menu pull-right']]);
+            $labels = $newLabels;
+        }*/
+
         return Nav::widget(['items' => $labels, 'options' => $this->navOptions])
         . Html::tag(
             'div',
             implode("\n", $contents),
-            ArrayHelper::getValue($this->tabOptions, 'tabOptions', ['class' => 'tab-content'])
-        );
+            ArrayHelper::getValue($this, 'tabOptions', ['class' => 'tab-content'])
+        )
+        . '<div class="p-l-25 p-r-25 p-b-25"><div class="clearfix fw-footer wizard">'
+        .'<div class="pull-left btn-group">'
+        . Html::button('<i class="zmdi zmdi-chevron-left"></i> Előző', ['class' => 'btn btn-default previous disabled'])
+        . Html::button('Következő <i class="zmdi zmdi-chevron-right"></i>', ['class' => 'btn btn-default next'])
+        .'</div>'
+        . Html::submitButton('<i class="zmdi zmdi-check"></i> Bérelszámolások mentése', ['class' => 'btn bgm-green finish pull-right', 'name' => 'save_payrolls', 'value' => 'true'])
+        . '</div></div>';
     }
 }
