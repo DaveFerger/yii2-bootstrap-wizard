@@ -124,6 +124,11 @@ class Wizard extends \yii\bootstrap\Widget
     public $encodeLabels = true;
 
     /**
+     * @var boolean whether the labels for header items should be HTML-encoded.
+     */
+    public $showStepNumber = false;
+
+    /**
      * @inheritdoc
      */
     public function init()
@@ -139,6 +144,7 @@ class Wizard extends \yii\bootstrap\Widget
     {
         WizardAsset::register($this->view);
         $this->registerPlugin('bootstrapWizard');
+
         return implode("\n", [
             Html::beginTag('div', $this->options),
             $this->renderItems(),
@@ -199,20 +205,25 @@ class Wizard extends \yii\bootstrap\Widget
                 'id',
                 $this->options['id'] . '-wizard' . $n
             );
+
+            if ($this->showStepNumber) {
+                $label = "<span class='step-number'><span class='number'>" . ($n + 1) . "</span><i class='zmdi zmdi-check'></i></span>" . $label;
+            }
+
             if (isset($item['url'])) {
                 $labels[] = [
-                    'label' => $label,
-                    'url' => $item['url'],
+                    'label'       => $label,
+                    'url'         => $item['url'],
                     'linkOptions' => $linkOptions,
-                    'options' => $labelOptions,
+                    'options'     => $labelOptions,
                 ];
             } else {
                 $linkOptions['data-toggle'] = 'tab';
                 $labels[] = [
-                    'label' => $label,
-                    'url' => '#' . $itemOptions['id'],
+                    'label'       => $label,
+                    'url'         => '#' . $itemOptions['id'],
                     'linkOptions' => $linkOptions,
-                    'options' => $labelOptions,
+                    'options'     => $labelOptions,
                 ];
             }
 
@@ -225,11 +236,26 @@ class Wizard extends \yii\bootstrap\Widget
             $n++;
         }
 
-        return Nav::widget(['items' => $labels, 'options' => $this->navOptions])
+
+        return Nav::widget([
+            'items'        => $labels,
+            'options'      => $this->navOptions,
+            'encodeLabels' => !$this->showStepNumber
+        ])
+        . '	<div id="bar" class="progress"><div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div></div>'
         . Html::tag(
             'div',
             implode("\n", $contents),
             ArrayHelper::getValue($this->tabOptions, 'tabOptions', ['class' => 'tab-content'])
-        );
+        )
+        . Nav::widget([
+            'options' => [
+                'class' => 'wizard pager',
+            ],
+            'items'   => [
+                ['label' => Yii::t('client', 'Previous'), 'options'=>['class' => 'previous']],
+                ['label' => Yii::t('client', 'Next'), 'options' => ['class' => 'next']]
+            ]
+        ]);
     }
 }
