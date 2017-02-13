@@ -26,7 +26,7 @@ class WizardAsset extends \yii\web\AssetBundle
      * @inheritdoc
      */
     public $js = [
-        'jquery.bootstrap.wizard.min.js'
+        'jquery.bootstrap.wizard.js'
     ];
 
     /**
