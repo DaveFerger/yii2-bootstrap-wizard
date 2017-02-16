@@ -35,5 +35,6 @@ class WizardAsset extends \yii\web\AssetBundle
     public $depends = [
        'yii\web\YiiAsset',
        'yii\bootstrap\BootstrapAsset',
+        'kartik\growl\GrowlAsset',
     ];
 }

@@ -250,11 +250,12 @@ class Wizard extends \yii\bootstrap\Widget
         )
         . Nav::widget([
             'options' => [
-                'class' => 'wizard pager',
+                'class' => 'wizard',
             ],
+            'encodeLabels' => false,
             'items'   => [
-                ['label' => Yii::t('client', 'Previous'), 'options'=>['class' => 'previous']],
-                ['label' => Yii::t('client', 'Next'), 'options' => ['class' => 'next']]
+                ['label' =>  '<i class="zmdi zmdi-chevron-left"></i><i class="zmdi zmdi-chevron-left"></i> ' . Yii::t('client', 'Previous'), 'options'=>['class' => 'previous'], 'linkOptions'=> ['class'=>'btn']],
+                ['label' => Yii::t('client', 'Next') . ' <i class="zmdi zmdi-chevron-right"></i><i class="zmdi zmdi-chevron-right"></i>', 'options' => ['class' => 'next'], 'linkOptions'=> ['class'=>'btn btn-primary']]
             ]
         ]);
     }
