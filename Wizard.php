@@ -254,7 +254,7 @@ class Wizard extends \yii\bootstrap\Widget
             ],
             'encodeLabels' => false,
             'items'   => [
-                ['label' =>  '<i class="zmdi zmdi-chevron-left"></i><i class="zmdi zmdi-chevron-left"></i> ' . Yii::t('client', 'Previous'), 'options'=>['class' => 'previous'], 'linkOptions'=> ['class'=>'btn']],
+                ['label' =>  '<i class="zmdi zmdi-chevron-left"></i><i class="zmdi zmdi-chevron-left"></i> ' . Yii::t('client', 'Previous'), 'options'=>['class' => 'previous'], 'linkOptions'=> ['class'=>'btn btn-default']],
                 ['label' => Yii::t('client', 'Next') . ' <i class="zmdi zmdi-chevron-right"></i><i class="zmdi zmdi-chevron-right"></i>', 'options' => ['class' => 'next'], 'linkOptions'=> ['class'=>'btn btn-primary']]
             ]
         ]);
