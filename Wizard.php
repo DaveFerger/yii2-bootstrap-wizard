@@ -248,15 +248,10 @@ class Wizard extends \yii\bootstrap\Widget
             implode("\n", $contents),
             ArrayHelper::getValue($this->tabOptions, 'tabOptions', ['class' => 'tab-content'])
         )
-        . Nav::widget([
-            'options' => [
-                'class' => 'wizard',
-            ],
-            'encodeLabels' => false,
-            'items'   => [
-                ['label' =>  '<i class="zmdi zmdi-chevron-left"></i><i class="zmdi zmdi-chevron-left"></i> ' . Yii::t('client', 'Previous'), 'options'=>['class' => 'previous'], 'linkOptions'=> ['class'=>'btn btn-default']],
-                ['label' => Yii::t('client', 'Next') . ' <i class="zmdi zmdi-chevron-right"></i><i class="zmdi zmdi-chevron-right"></i>', 'options' => ['class' => 'next'], 'linkOptions'=> ['class'=>'btn btn-primary']]
-            ]
-        ]);
-    }
+        . Html::beginTag('ul', ['class' => 'wizard nav'])
+            . Html::tag('li', '<a class="btn btn-default waves-effect" href="#"><i class="zmdi zmdi-chevron-left"></i><i class="zmdi zmdi-chevron-left"></i> ' . Yii::t('wizard', 'Previous') . '</a>', ['class' => "previous"])
+            . Html::tag('li', '<a class="btn btn-primary waves-effect" href="#">' . Yii::t('wizard', 'Next') . ' <i class="zmdi zmdi-chevron-right"></i><i class="zmdi zmdi-chevron-right"></i></a>', ['class' => "next"])
+            . Html::tag('li', '<button class="btn btn-success waves-effect" type="submit">' . Yii::t('wizard', 'Save') . ' <i class="zmdi zmdi-check"></i></button>', ['class' => "finish disabled hidden"])
+        . Html::endTag('ul');
+   }
 }
